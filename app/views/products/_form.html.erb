@@ -1,4 +1,4 @@
-<%= simple_form_for product do |f| %>
+<%= simple_form_for product, html: { class: "product" } do |f| %>
   <% if product.errors.any? %>
     <div class="error-message">
       <%= product.errors.full_messages.to_sentence.capitalize %>
@@ -19,7 +19,8 @@
     </div>
   </div>
 
-  <div class="form-actions mt-3 d-grid">
+  <div class="form-actions mt-3 d-grid gap-2">
+    <%= link_to "Cancel", products_path, class: "btn btn-secondary" %>
     <%= f.submit class: "btn btn-info" %>
   </div>
 <% end %>

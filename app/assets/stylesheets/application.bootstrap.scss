@@ -1,6 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+// Components
+@import 'components/product';
+
 // config
 @import 'config/variables';
 @import 'config/reset';
