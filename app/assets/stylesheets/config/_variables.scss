@@ -1,0 +1,24 @@
+:root {
+  // Simple fonts
+  --font-family-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  // Application colors
+  --color-primary:          hsl(350, 67%, 50%);
+  --color-primary-rotate:   hsl(10, 73%, 54%);
+  --color-primary-bg:       hsl(0, 85%, 96%);
+  --color-secondary:        hsl(101, 45%, 56%);
+  --color-secondary-rotate: hsl(120, 45%, 56%);
+  --color-tertiary:         hsl(49, 89%, 64%);
+  --color-glint:            hsl(210, 100%, 82%);
+
+  // Neutral colors
+  --color-white:      hsl(0, 0%, 100%);
+  --color-background: hsl(30, 50%, 98%);
+  --color-light:      hsl(0, 6%, 93%);
+  --color-dark:       var(--color-text-header);
+
+  // Three different text colors
+  --color-text-header: hsl(0, 1%, 16%);
+  --color-text-body:   hsl(0, 5%, 25%);
+  --color-text-muted:  hsl(0, 1%, 44%);
+}

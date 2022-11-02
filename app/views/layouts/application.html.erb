@@ -11,6 +11,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container mt-4 pb-4">
+      <div class="main-flash-messages">
+        <%= render 'layouts/messages' %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
