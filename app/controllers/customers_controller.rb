@@ -16,7 +16,10 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      redirect_to customers_path, notice: "Customer was successfully created."
+      respond_to do |format|
+        format.html { redirect_to customers_path, notice: "Customer was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +38,10 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer.destroy
-     redirect_to customers_path, notice: "Customer was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to customers_path, notice: "Customer was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

@@ -25,4 +25,6 @@ class Customer < ApplicationRecord
   end
 
   scope :ordered, -> { order(id: :desc) }
+
+  broadcasts_to ->(customer) { "customers" }, inserts_by: :prepend
 end
