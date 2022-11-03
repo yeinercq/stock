@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :bigint           not null, primary key
+#  name        :string           not null
+#  description :text             not null
+#  unit        :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Product < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :unit, presence: true
