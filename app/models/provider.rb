@@ -14,6 +14,9 @@ class Provider < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :phone_number, presence: true
 
+  scope :ordered, -> { order(id: :desc) }
+
+  broadcasts_to ->(product) { "providers" }, inserts_by: :prepend
   before_validation :normalize_email
 
   def normalize_email

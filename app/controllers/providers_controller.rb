@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_action :set_provider, only: [:edit, :update, :destroy]
 
   def index
-    @providers = Provider.all
+    @providers = Provider.ordered
   end
 
   def new
@@ -13,7 +13,10 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
 
     if @provider.save
-      redirect_to providers_path, notice: "Provider was successfully created."
+      respond_to do |format|
+        format.html { redirect_to providers_path, notice: "Provider was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,8 +35,10 @@ class ProvidersController < ApplicationController
 
   def destroy
     @provider.destroy
-
-    redirect_to providers_path, notice: "Provider was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to providers_path, notice: "Provider was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

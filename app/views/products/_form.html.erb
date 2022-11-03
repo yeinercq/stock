@@ -1,4 +1,4 @@
-<%= simple_form_for product, html: { class: "product" } do |f| %>
+<%= simple_form_for product, html: { class: "form" } do |f| %>
   <% if product.errors.any? %>
     <div class="error-message">
       <%= product.errors.full_messages.to_sentence.capitalize %>

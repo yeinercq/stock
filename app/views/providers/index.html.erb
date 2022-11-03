@@ -1,33 +1,12 @@
+<%= turbo_stream_from "providers"%>
 <div class="container">
   <div class="header">
     <h1>Providers</h1>
-    <%= link_to "New provider", new_provider_path, class: "btn btn-primary" %>
+    <%= link_to "New provider", new_provider_path, data: { turbo_frame: dom_id(Provider.new) }, class: "btn btn-primary" %>
   </div>
 
-  <div class="card mt-3">
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone number</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @providers.each do |provider| %>
-            <tr>
-              <td><%= provider.name %></td>
-              <td><%= provider.email %></td>
-              <td><%= provider.phone_number%></td>
-              <td><%= link_to "Edit", edit_provider_path(provider), class: "btn btn-secondary" %></td>
-              <td><%= link_to "Delete", provider, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= turbo_frame_tag Provider.new %>
+  <%= turbo_frame_tag "providers" do %>
+  <%= render @providers %>
+  <% end %>
 </div>

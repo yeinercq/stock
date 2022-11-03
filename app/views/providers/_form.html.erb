@@ -1,4 +1,4 @@
-<%= simple_form_for provider do |f| %>
+<%= simple_form_for provider, html: { class: "form" } do |f| %>
   <% if provider.errors.any? %>
     <div class="error-message">
       <%= provider.errors.full_messages.to_sentence.capitalize %>
