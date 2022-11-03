@@ -17,3 +17,15 @@ for i in 1..10 do
 end
 
 puts "Providers has been created."
+
+for i in 1..10 do
+  Customer.create!(
+    name: Faker::Name.name,
+    email: "person#{i}@mail.com",
+    phone_number: "11111111#{i}",
+    id_number: "123456#{i}",
+    address: "Valencia de la paz"
+  )
+end
+
+puts "Customers has been created."
