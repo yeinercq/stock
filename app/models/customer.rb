@@ -18,7 +18,10 @@ class Customer < ApplicationRecord
   validates :id_number, presence: true, uniqueness: true
   validates :address, presence: true
 
+  has_many :invoices
+
   before_validation :normalize_email
+
 
   def normalize_email
     self.email = email.downcase

@@ -1,0 +1,11 @@
+<div class="container">
+  <%= link_to sanitize("&larr; Back to invoices"), invoices_path %>
+  <div class="card shadow mt-4">
+    <div class="card-body">
+
+      <h1>New invoice</h1>
+
+      <%= render "form", invoice: @invoice %>
+    </div>
+  </div>
+</div>

@@ -29,3 +29,11 @@ for i in 1..10 do
 end
 
 puts "Customers has been created."
+
+for i in 1..10 do
+  Invoice.create!(
+    customer_id: 1
+  )
+end
+
+puts "Invoices has been created."
