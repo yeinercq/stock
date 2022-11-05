@@ -1,2 +1,3 @@
 <%= turbo_stream.prepend "invoices", @invoice %>
 <%= turbo_stream.update Invoice.new, "" %>
+<%= render_turbo_stream_flash_messages %>

@@ -12,11 +12,11 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <div class="container mt-4 pb-4">
-      <div class="main-flash-messages">
-        <%= render 'layouts/messages' %>
-      </div>
-      <%= yield %>
+
+    <div id="flash" class="flash">
+      <%= render 'layouts/messages' %>
     </div>
+
+    <%= yield %>
   </body>
 </html>

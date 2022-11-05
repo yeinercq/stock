@@ -1,9 +1,5 @@
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <br/>
-    <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show">
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <% end %>
+<% flash.each do |flash_type, message| %>
+  <div class="flash__message" data-controller="removals" data-action="animationend->removals#remove">
+    <%= message %>
+  </div>
 <% end %>

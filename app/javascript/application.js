@@ -2,3 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
+
+// The two following lines disable Turbo on the whole application
+// import { Turbo } from "@hotwired/turbo-rails"
+// Turbo.session.drive = false

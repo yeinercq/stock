@@ -18,7 +18,7 @@ class InvoicesController < ApplicationController
     if @invoice.save
       respond_to do |format|
         format.html { redirect_to invoices_path, notice: "Invoice was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Invoice was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +30,10 @@ class InvoicesController < ApplicationController
 
   def update
     if @invoice.update(invoice_params)
-      redirect_to invoices_path, notice: "Invoice was successfully updated."
+      respond_to  do |format|
+        format.html { redirect_to invoices_path, notice: "Invoice was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Invoice was successfully updated." } 
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +43,7 @@ class InvoicesController < ApplicationController
     if @invoice.destroy
       respond_to do |format|
         format.html { redirect_to invoices_path, notice: "Invoice was successfully destroyed." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Invoice was successfully destroyed." }
       end
     else
       render :edit, status: :unprocessable_entity
