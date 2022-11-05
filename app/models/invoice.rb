@@ -11,7 +11,11 @@
 class Invoice < ApplicationRecord
   belongs_to :customer
 
+  has_many :items, dependent: :destroy
+
   validates :customer_id, presence: true
 
   scope :ordered,-> { order(id: :desc) }
+
+  broadcasts_to ->(invoice) { "invoices" }, inserts_by: :prepend
 end

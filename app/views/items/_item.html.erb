@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col">
+    <%= item.product.name %>
+  </div>
+  <div class="col">
+    <%= item.quantity %>
+    &times;
+    <%= number_to_currency item.unit_price %>
+  </div>
+  <div class="col">
+    <%= item.quantity %>
+  </div>
+  <div class="col">
+    <%= number_to_currency item.unit_price %>
+  </div>
+  <div class="col d-grid">
+    <%= link_to "Delete", [invoice, item], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-warning" %>
+    <%= link_to "Edit",[:edit, invoice, item], class: "btn btn-secondary" %>
+  </div>
+</div>

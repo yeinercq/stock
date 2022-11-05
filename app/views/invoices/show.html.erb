@@ -1,7 +1,9 @@
 <div class="container">
   <%= link_to sanitize("&larr; Back to invoices"), invoices_path %>
   <div class="card shadow mt-4">
-
+    <div class="card-header">
+      Invoice: <%= @invoice.id %>
+    </div>
     <div class="card-body">
       <div class="form-inputs">
         <div class="row">
@@ -11,7 +13,13 @@
             </h4>
           </div>
         </div>
+        <div class="row">
+          <%= render @invoice.items, invoice: @invoice %>
+        </div>
       </div>
+    </div>
+    <div class="card-footer">
+        <%= link_to "Add item", [:new, @invoice, :item], class: "btn btn-primary" %>
     </div>
   </div>
 </div>

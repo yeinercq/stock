@@ -1,0 +1,26 @@
+<%= simple_form_for [invoice, item], html: { class: "form" } do |f| %>
+  <% if item.errors.any? %>
+    <div class="error-message">
+      <%= item.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-12 col-sm-4">
+        <%= f.input :product_id, label: "Product", as: :select, collection: Product.all, label_method: -> (u) { u.name } %>
+      </div>
+      <div class="col-12 col-sm-4">
+        <%= f.input :quantity, label: "Quantity" %>
+      </div>
+      <div class="col-12 col-sm-4">
+        <%= f.input :unit_price, label: "Price" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions mt-3 d-grid gap-2">
+    <%= link_to "Cancel", invoices_path, class: "btn btn-secondary" %>
+    <%= f.submit class: "btn btn-info" %>
+  </div>
+<% end %>

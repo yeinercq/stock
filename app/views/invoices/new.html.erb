@@ -4,8 +4,9 @@
     <div class="card-body">
 
       <h1>New invoice</h1>
-
-      <%= render "form", invoice: @invoice %>
+      <%= turbo_frame_tag @invoice do %>
+        <%= render "form", invoice: @invoice %>
+      <% end %>
     </div>
   </div>
 </div>
