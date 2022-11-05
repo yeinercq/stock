@@ -30,8 +30,19 @@ end
 
 puts "Customers has been created."
 
+coopkahawa = Company.create!(name: "Coopkahawa")
+cadefihuila = Company.create!(name: "Cadefihuila")
+
+puts "Companies has been created."
+
+yeiner = User.create(email: "yeiner@coopkahawa.com", password: "123456", password_confirmation: "123456", company: coopkahawa )
+cristina = User.create(email: "cristina@coopkahawa.com", password: "123456", password_confirmation: "123456", company: coopkahawa )
+gilberto = User.create(email: "gilberto@cadefihuila.com", password: "123456", password_confirmation: "123456", company: cadefihuila )
+
+puts "Users has been created."
+
 for i in 1..10 do
-  Invoice.create!(
+  coopkahawa.invoices.create!(
     customer_id: 1
   )
 end

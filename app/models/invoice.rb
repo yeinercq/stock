@@ -7,9 +7,11 @@
 #  customer_id :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  company_id  :bigint           not null
 #
 class Invoice < ApplicationRecord
   belongs_to :customer
+  belongs_to :company
 
   has_many :items, dependent: :destroy
 
@@ -17,5 +19,5 @@ class Invoice < ApplicationRecord
 
   scope :ordered,-> { order(id: :desc) }
 
-  broadcasts_to ->(invoice) { "invoices" }, inserts_by: :prepend
+  broadcasts_to ->(invoice) { [invoice.company, "invoices"] }, inserts_by: :prepend
 end
