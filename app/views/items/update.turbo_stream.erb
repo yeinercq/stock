@@ -1,0 +1,5 @@
+<%= turbo_stream.remove @item %>
+<%= turbo_stream.append "items" do %>
+  <%= render @item, invoice: @invoice %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

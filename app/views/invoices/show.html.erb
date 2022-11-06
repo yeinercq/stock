@@ -20,12 +20,15 @@
             <div class="col-12 d-none col-sm-2 d-sm-block"><b>Actions</b></div>
         </div>
         <div class="row mt-4 mb-4">
-          <%= render @invoice.items, invoice: @invoice %>
+          <%= turbo_frame_tag "items" do %>
+            <%= render @invoice.items, invoice: @invoice %>
+          <% end %>
+          <%= turbo_frame_tag Item.new %>
         </div>
       </div>
     </div>
     <div class="card-footer">
-        <%= link_to "Add item", [:new, @invoice, :item], class: "btn btn-primary" %>
+        <%= link_to "Add item", new_invoice_item_path(@invoice), data: { turbo_frame: dom_id(Item.new) }, class: "btn btn-primary" %>
     </div>
   </div>
 </div>

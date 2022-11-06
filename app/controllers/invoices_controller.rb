@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
     if @invoice.update(invoice_params)
       respond_to  do |format|
         format.html { redirect_to invoices_path, notice: "Invoice was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Invoice was successfully updated." } 
+        format.turbo_stream { flash.now[:notice] = "Invoice was successfully updated." }
       end
     else
       render :new, status: :unprocessable_entity

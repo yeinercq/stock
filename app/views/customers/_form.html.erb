@@ -1,9 +1,5 @@
 <%= simple_form_for customer, html: { class: "form" } do |f| %>
-  <% if customer.errors.any? %>
-    <div class="error-message">
-      <%= customer.errors.full_messages.to_sentence.capitalize %>
-    </div>
-  <% end %>
+  <%= form_error_notification(customer) %>
 
   <div class="form-inputs">
     <div class="row">

@@ -10,7 +10,10 @@ class ItemsController < ApplicationController
     @item = @invoice.items.build(item_params)
 
     if @item.save
-      redirect_to invoice_path(@invoice), notice: "Item was successfully created."
+      respond_to do |format|
+        format.html { redirect_to invoice_path(@invoice), notice: "Item was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Item was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,7 +24,10 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to invoice_path(@invoice), notice: "Item was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to invoice_path(@invoice), notice: "Item was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -29,7 +35,10 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to invoice_path(@invoice), notice: "Item was successfully destroyed."
+      respond_to do |format|
+        format.html { redirect_to invoice_path(@invoice), notice: "Item was successfully destroyed." }
+        format.turbo_stream { flash.now[:notice] = "Item was successfully destroyed." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
