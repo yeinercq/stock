@@ -12,7 +12,7 @@
 class Provider < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
 

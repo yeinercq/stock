@@ -14,8 +14,8 @@
 class Customer < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :phone_number, presence: true
-  validates :id_number, presence: true, uniqueness: true
+  validates :phone_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :id_number, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
   validates :address, presence: true
 
   has_many :invoices
