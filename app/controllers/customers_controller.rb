@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
     if @customer.save
       respond_to do |format|
         format.html { redirect_to customers_path, notice: "Customer was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Customer was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +30,10 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to customers_path, notice: "Customer was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to customers_path, notice: "Customer was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Customer was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +43,7 @@ class CustomersController < ApplicationController
     @customer.destroy
     respond_to do |format|
       format.html { redirect_to customers_path, notice: "Customer was successfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Customer was successfully destroyed." }
     end
   end
 

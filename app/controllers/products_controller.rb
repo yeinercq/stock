@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     if @product.save
       respond_to do |format|
         format.html { redirect_to products_path, notice: "Product was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Product was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +30,10 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to products_path, notice: "Product was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to products_path, notice: "Product was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Product was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +44,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to products_path, notice: "Product was successfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Product was successfully destroyed." }
 
     end
   end
