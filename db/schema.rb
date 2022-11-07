@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_031627) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_041312) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
@@ -39,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_031627) do
     t.bigint "company_id", null: false
     t.bigint "client_id", null: false
     t.string "code"
+    t.string "status"
+    t.hstore "transitions", default: [], array: true
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["company_id"], name: "index_invoices_on_company_id"
   end
