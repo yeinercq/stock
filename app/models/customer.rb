@@ -18,7 +18,7 @@ class Customer < ApplicationRecord
   validates :id_number, presence: true, uniqueness: true, numericality: { only_integer: true, greater_than: 0 }
   validates :address, presence: true
 
-  has_many :invoices
+  has_many :invoices, foreign_key: "client_id"
 
   before_validation :normalize_email
 

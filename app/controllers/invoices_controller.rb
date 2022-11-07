@@ -57,6 +57,6 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:customer_id)
+    params.require(:invoice).permit(:client_id)
   end
 end

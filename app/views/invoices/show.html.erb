@@ -2,14 +2,14 @@
   <%= link_to sanitize("&larr; Back to invoices"), invoices_path %>
   <div class="card shadow mt-4">
     <div class="card-header">
-      Invoice: <%= @invoice.id %>
+      Invoice: <%= @invoice.code %>
     </div>
     <div class="card-body">
       <div class="form-inputs">
         <div class="row">
           <div class="col-12 col-sm-6">
             <h4>
-              Client: <%= @invoice.customer.name %>
+              Client: <%= @invoice.client.name %>
             </h4>
           </div>
         </div>

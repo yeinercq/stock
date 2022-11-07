@@ -3,11 +3,13 @@
     <div class="card shadow-sm">
       <div class="card-body">
           <div class="row align-items-center">
-            <div class="col-12 col-md-8">
-              Cod: <%= link_to invoice.id, invoice_path(invoice), data: { turbo_frame: '_top' } %>
+            <div class="col-12 col-md-4">
+              Cod: <%= link_to invoice.code, invoice_path(invoice), data: { turbo_frame: '_top' } %>
             </div>
-
-            <div class="col-12 col-md-2">
+            <div class="col-12 col-md-3">
+              Client: <%= invoice.client.name %>
+            </div>
+            <div class="col-12 col-md-3">
               <% if invoice.total.present? %>
               Total: <%= number_to_currency invoice.total %>
               <% end %>

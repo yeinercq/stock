@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_155354) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_031627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,12 +34,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_155354) do
 
   create_table "invoices", force: :cascade do |t|
     t.decimal "total", precision: 10, scale: 2
-    t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id", null: false
+    t.bigint "client_id", null: false
+    t.string "code"
+    t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["company_id"], name: "index_invoices_on_company_id"
-    t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -84,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_155354) do
   end
 
   add_foreign_key "invoices", "companies"
-  add_foreign_key "invoices", "customers"
+  add_foreign_key "invoices", "customers", column: "client_id"
   add_foreign_key "items", "invoices"
   add_foreign_key "items", "products"
   add_foreign_key "users", "companies"

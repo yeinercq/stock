@@ -43,7 +43,7 @@ puts "Users has been created."
 
 for i in 1..10 do
   coopkahawa.invoices.create!(
-    customer_id: 1
+    client_id: 1
   )
 end
 
