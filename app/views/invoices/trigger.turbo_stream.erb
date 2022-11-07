@@ -1,0 +1,14 @@
+<%= turbo_stream.update "invoice-status" do %>
+  <%= render "invoices/status_tag", invoice: @invoice %>
+<% end %>
+<%= turbo_stream.update "invoice-action" do %>
+  <%= render "invoices/status", invoice: @invoice %>
+<% end %>
+<%= turbo_stream.update "add-item" do %>
+  <%= render "invoices/add_item", invoice: @invoice %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.update "items" do %>
+  <%= render @invoice.items, invoice: @invoice %>
+<% end %>

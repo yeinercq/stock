@@ -2,13 +2,15 @@
 #
 # Table name: invoices
 #
-#  id         :bigint           not null, primary key
-#  total      :decimal(10, 2)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  company_id :bigint           not null
-#  client_id  :bigint           not null
-#  code       :string
+#  id          :bigint           not null, primary key
+#  total       :decimal(10, 2)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  company_id  :bigint           not null
+#  client_id   :bigint           not null
+#  code        :string
+#  status      :string
+#  transitions :hstore           is an Array
 #
 class Invoice < ApplicationRecord
   include AASM
@@ -31,14 +33,10 @@ class Invoice < ApplicationRecord
   end
 
   aasm column: :status do
-    state :new, initial: true
-    state :recorded, :confirmed, :paid, :delivered
+    state :recorded, initial: true
+    state :confirmed, :paid, :delivered
 
     after_all_transitions :log_status_change
-
-    event :record do
-      transitions from: :new, to: :recorded
-    end
 
     event :confirm do
       transitions from: :recorded, to: :confirmed

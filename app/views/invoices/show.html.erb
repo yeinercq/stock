@@ -2,7 +2,25 @@
   <%= link_to sanitize("&larr; Back to invoices"), invoices_path %>
   <div class="card shadow mt-4">
     <div class="card-header">
-      Invoice: <%= @invoice.code %>
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          Invoice: <%= @invoice.code %>
+        </div>
+        <div id="invoice-status" class="col-6 col-sm-2">
+          <%= render "invoices/status_tag", invoice: @invoice %>
+        </div>
+        <div class="col-6 col-sm-2">
+          Action:
+          <div class="dropdown">
+            <a class="dropdown-toggle" id="invoiceStatus" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-cloud-download-fill"></i>
+            </a>
+            <div id="invoice-action" aria-labelledby="invoiceStatus" class="dropdown-menu">
+              <%= render "invoices/status", invoice: @invoice %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="form-inputs">
@@ -27,12 +45,11 @@
         </div>
       </div>
     </div>
-    <div class="card-footer">
-        <%= link_to "Add item", new_invoice_item_path(@invoice), data: { turbo_frame: dom_id(Item.new) }, class: "btn btn-primary" %>
+    <div id="add-item" class="card-footer">
+        <%= render 'invoices/add_item', invoice: @invoice %>
     </div>
   </div>
 </div>
-
 
 <%= turbo_frame_tag dom_id(@invoice, :total) do %>
   <%= render "invoices/total", invoice: @invoice %>

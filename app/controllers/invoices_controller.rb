@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :trigger]
 
   def index
     @invoices = current_company.invoices.ordered
@@ -47,6 +47,14 @@ class InvoicesController < ApplicationController
       end
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def trigger
+    respond_to do |format|
+      Invoices::TriggerEvent.new.call(@invoice, params[:event])
+      format.html {redirect_to invoice_path(@invoice), notice: "Invoice status was successfully changed." }
+      format.turbo_stream { flash.now[:notice] = "Invoice status was successfully changed." }
     end
   end
 

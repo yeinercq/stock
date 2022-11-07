@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :providers, except: [:show]
   resources :customers
   resources :invoices do
+    patch :trigger, on: :member
     resources :items, except: [:show, :index]
   end
 end
