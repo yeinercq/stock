@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <%= link_to sanitize("&larr; Back to invoices"), invoices_path %>
   <div class="card shadow mt-4">
     <div class="card-header">
@@ -32,3 +32,8 @@
     </div>
   </div>
 </div>
+
+
+<%= turbo_frame_tag dom_id(@invoice, :total) do %>
+  <%= render "invoices/total", invoice: @invoice %>
+<% end %>

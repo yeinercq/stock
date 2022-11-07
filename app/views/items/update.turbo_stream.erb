@@ -2,4 +2,7 @@
 <%= turbo_stream.append "items" do %>
   <%= render @item, invoice: @invoice %>
 <% end %>
+<%= turbo_stream.update dom_id(@invoice, :total) do %>
+  <%= render 'invoices/total', invoice: @invoice %>
+<% end %>
 <%= render_turbo_stream_flash_messages %>

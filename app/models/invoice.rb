@@ -20,4 +20,8 @@ class Invoice < ApplicationRecord
   scope :ordered,-> { order(id: :desc) }
 
   broadcasts_to ->(invoice) { [invoice.company, "invoices"] }, inserts_by: :prepend
+
+  def total_price
+    items.sum(&:total_price)
+  end
 end

@@ -14,7 +14,11 @@ class Item < ApplicationRecord
   belongs_to :invoice
   belongs_to :product
 
-  validates :product_id, uniqueness: true
+  validates :product_id, uniqueness: { scope: :invoice_id, message: "has been already taken" }
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :unit_price, presence: true, numericality: { greater_than: 0 }
+
+  def total_price
+    quantity * unit_price
+  end
 end
