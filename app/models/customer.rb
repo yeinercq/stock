@@ -10,8 +10,10 @@
 #  address      :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  company_id   :bigint           not null
 #
 class Customer < ApplicationRecord
+  belongs_to :company
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :phone_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -29,5 +31,5 @@ class Customer < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
-  broadcasts_to ->(customer) { "customers" }, inserts_by: :prepend
+  broadcasts_to ->(customer) { [customer.company, "customers"] }, inserts_by: :prepend
 end

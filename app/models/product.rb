@@ -8,9 +8,11 @@
 #  unit        :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  company_id  :bigint           not null
 #
 class Product < ApplicationRecord
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  belongs_to :company
+  validates :name, presence: true, uniqueness: { scope: :company_id, message: "has been already taken", case_sensitive: false }
   validates :unit, presence: true
 
   enum unit: { kilo: 1, bulto: 2, unidad: 3 }
@@ -32,5 +34,5 @@ class Product < ApplicationRecord
 
   # Equal al the code above
 
-  broadcasts_to ->(product) { "products" }, inserts_by: :prepend
+  broadcasts_to ->(product) { [product.company, "products"] }, inserts_by: :prepend
 end

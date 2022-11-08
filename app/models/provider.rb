@@ -8,15 +8,19 @@
 #  phone_number :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  company_id   :bigint           not null
 #
 class Provider < ApplicationRecord
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  belongs_to :company
+
+  validates :name, presence: true, uniqueness: { scope: :company_id, message: "has been already taken", case_sensitive: false }
+  validates :email, presence: true, uniqueness: { scope: :company_id, message: "has been already taken", case_sensitive: false }
   validates :phone_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   scope :ordered, -> { order(id: :desc) }
 
-  broadcasts_to ->(product) { "providers" }, inserts_by: :prepend
+  broadcasts_to ->(provider) { [provider.company, "providers"] }, inserts_by: :prepend
+
   before_validation :normalize_email
 
   def normalize_email

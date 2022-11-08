@@ -2,18 +2,18 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @customers = Customer.ordered
+    @customers = current_company.customers.ordered
   end
 
   def show
   end
 
   def new
-    @customer = Customer.new
+    @customer = current_company.customers.build
   end
 
   def create
-    @customer = Customer.new(customer_params)
+    @customer = current_company.customers.build(customer_params)
 
     if @customer.save
       respond_to do |format|
@@ -50,7 +50,7 @@ class CustomersController < ApplicationController
   private
 
   def set_customer
-    @customer = Customer.find(params[:id])
+    @customer = current_company.customers.find(params[:id])
   end
 
   def customer_params

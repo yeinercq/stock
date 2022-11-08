@@ -2,15 +2,15 @@ class ProvidersController < ApplicationController
   before_action :set_provider, only: [:edit, :update, :destroy]
 
   def index
-    @providers = Provider.ordered
+    @providers = current_company.providers.ordered
   end
 
   def new
-    @provider = Provider.new
+    @provider = current_company.providers.build
   end
 
   def create
-    @provider = Provider.new(provider_params)
+    @provider = current_company.providers.build(provider_params)
 
     if @provider.save
       respond_to do |format|
@@ -47,7 +47,7 @@ class ProvidersController < ApplicationController
   private
 
   def set_provider
-    @provider = Provider.find(params[:id])
+    @provider = current_company.providers.find(params[:id])
   end
 
   def provider_params
