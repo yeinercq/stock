@@ -12,7 +12,7 @@
 #
 class Product < ApplicationRecord
   belongs_to :company
-  validates :name, presence: true, uniqueness: { scope: :company_id, message: "has been already taken", case_sensitive: false }
+  validates :name, presence: true, uniqueness: { scope: :company_id, message: "has already been taken", case_sensitive: false }
   validates :unit, presence: true
 
   enum unit: { kilo: 1, bulto: 2, unidad: 3 }

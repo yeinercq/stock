@@ -22,11 +22,11 @@ class Customer < ApplicationRecord
 
   has_many :invoices, foreign_key: "client_id"
 
-  before_validation :normalize_email
+  before_save :normalize_email
 
 
   def normalize_email
-    self.email = email.downcase
+    self.email = email.downcase if email
   end
 
   scope :ordered, -> { order(id: :desc) }
