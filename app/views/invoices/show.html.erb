@@ -10,10 +10,10 @@
           <%= render "invoices/status_tag", invoice: @invoice %>
         </div>
         <div class="col-6 col-sm-2">
-          Action:
           <div class="dropdown">
-            <a class="dropdown-toggle" id="invoiceStatus" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="dropdown-toggle" id="invoice-status" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-cloud-download-fill"></i>
+              Action
             </a>
             <div id="invoice-action" aria-labelledby="invoiceStatus" class="dropdown-menu">
               <%= render "invoices/status", invoice: @invoice %>
