@@ -2,7 +2,18 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy, :trigger]
 
   def index
-    @invoices = current_company.invoices.ordered
+    # if params[:status].present?
+    #   @status = params[:status]
+    #   @invoices = current_company.invoices.status_value(@status)
+    # else
+    #   @invoices = current_company.invoices.ordered
+    # end
+
+    # It receives keys->values to filter invoice index 
+    @invoices = Invoice.where(nil).ordered
+    filtering_params(params).each do |key, value|
+      @invoices = @invoices.public_send("filter_by_#{key}", value).ordered if value.present?
+    end
   end
 
   def show
@@ -59,6 +70,10 @@ class InvoicesController < ApplicationController
   end
 
   private
+
+  def filtering_params(params)
+    params.slice(:status, :client, :code)
+  end
 
   def set_invoice
     @invoice = current_company.invoices.find(params[:id])

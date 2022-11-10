@@ -79,10 +79,7 @@ group :test do
   gem "capybara"
   gem 'shoulda-matchers', '~> 5.0'
   gem 'rails-controller-testing'
-<<<<<<< HEAD
   gem 'selenium-webdriver'
   gem 'pry'
   gem 'pry-doc'
-=======
->>>>>>> 9c3dae5e699e932c39841943654334548986ca0e
 end

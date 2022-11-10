@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-1 offset-11">
+    <div class="dropdown">
+      <a class="dropdown-toggle" id="filter-show" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-funnel-fill"></i>
+        Filtar
+      </a>
+      <div id="filter-show-action" aria-labelledby="invoiceStatus" class="dropdown-menu">
+        <%= render "invoices/filter_by_status" %>
+      </div>
+    </div>
+  </div>
+</div>
