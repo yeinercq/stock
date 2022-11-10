@@ -6,6 +6,7 @@
         Filtar
       </a>
       <div id="filter-show-action" aria-labelledby="invoiceStatus" class="dropdown-menu">
+        <%= link_to "all", invoices_path, class: 'dropdown-item'%>
         <%= render "invoices/filter_by_status" %>
       </div>
     </div>
