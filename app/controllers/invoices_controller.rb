@@ -17,7 +17,7 @@ class InvoicesController < ApplicationController
 
     if @invoice.save
       respond_to do |format|
-        format.html { redirect_to invoices_path, notice: "Invoice was successfully created." }
+        format.html { redirect_to invoice_path(@invoice), notice: "Invoice was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Invoice was successfully created." }
       end
     else
