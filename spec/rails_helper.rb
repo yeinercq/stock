@@ -52,10 +52,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
-<<<<<<< HEAD
   config.include Devise::Test::IntegrationHelpers, type: :system
-=======
->>>>>>> 9c3dae5e699e932c39841943654334548986ca0e
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
